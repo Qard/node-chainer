@@ -26,8 +26,9 @@ function chainer(){
 	}
 	function next() {
 		if (chain.length) {
-			chain[0]();
+			var func = chain[0];
 			chain.shift();
+			func();
 		}
 	}
 	

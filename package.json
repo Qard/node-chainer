@@ -1,9 +1,18 @@
 {
-	"name" : "chainer"
-	, "description" : "Super simple and lightweight function chain."
-	, "version" : "0.0.1"
-	, "main" : "index.js"
-	, "author" : "Stephen Belanger <admin@stephenbelanger.com>"
-	, "repository" : { "type":"git", "url":"http://github.com/qard/node-chainer.git" }
-	, "keywords": ["chain", "chainer", "callback", "callback chain", "callback chainer" "function, "function chain", "function chainer"]
+  "name": "chainer",
+  "description": "Super simple and lightweight function chain.",
+  "version": "0.0.1",
+  "homepage": "stephenbelanger.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Qard/node-chainer.git"
+  },
+  "author": "Stephen Belanger <admin@stephenbelanger.com> (stephenbelanger.com)",
+  "main": "index.js",
+  "directories": {
+    "lib": "."
+  },
+  "engines": {
+    "node": "*"
+  }
 }
