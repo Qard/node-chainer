@@ -20,15 +20,15 @@
  */
 
 function Chainer() {
-    // don't force to use 'new'
-    if (!(this instanceof Chainer)) {
-        return new Chainer();
-    }
+	// don't force to use 'new'
+	if ( ! (this instanceof Chainer)) {
+		return new Chainer();
+	}
 
-    this._curr;
-    this._chain = [];
-    this._revChain = [];
-    this.fn = {};
+	this._curr;
+	this._chain = [];
+	this._revChain = [];
+	this.fn = {};
 }
 
 module.exports = Chainer;
@@ -37,80 +37,82 @@ var proto = Chainer.prototype;
 
 // Add callback to chain.
 proto.add = proto.push = function(name, callback) {
-    if (typeof name === 'function') {
-        callback = name;
-        name = callback.name;
-    }
-    
-    this._chain.push(callback);
+	if (typeof name === 'function') {
+		callback = name;
+		name = callback.name;
+	}
 
-    if (name) {
-        this.fn[name] = callback;
-    }
-    
-    return this;
+	this._chain.push(callback);
+
+	if (name) {
+		this.fn[name] = callback;
+	}
+
+	return this;
 };
 
 // Execute previous item in chain.
 proto.prev = function() {
-    if (!this._revChain.length) {
-        return this;
-    }
-    
+	if ( ! this._revChain.length) {
+		return this;
+	}
+
 	// Get new current function.
-    var fn = this._revChain.pop();
-    
+	var fn = this._revChain.pop();
+
 	// Add old current function to start of chain.
 	if (this._curr) {
 		this._chain.reverse();
 		this._chain.push(this._curr);
 		this._chain.reverse();
 	}
-	
+
 	// Store new current function outside
 	// of forward and reverse lists.
 	this._curr = fn;
-	
+
 	// Execute current function.
 	fn.apply(this, arguments);
-    return this;    
+	
+	return this;    
 };
 
 // Execute next item in chain.
 proto.next = proto.run = proto.start = function() {
-    if (!this._chain.length) {
-        return this;
-    }    
-    
+	if ( ! this._chain.length) {
+		return this;
+	}    
+
 	// Get new current function.
 	var fn = this._chain.shift();
-	
+
 	// Add old current function to end of rev_chain.
 	if (this._curr) {
 		this._revChain.push(this._curr);
 	}
-	
+
 	// Store new current function outside
 	// of forward and reverse lists.
 	this._curr = fn;
-	
+
 	// Execute current function.
 	fn.apply(this, arguments);
-    return this;
+
+	return this;
 };
 
 // Execute from origin point in chain.
 proto.from = function(origin) {
 	// Convert start/end to boolean.
 	origin = origin === 'start';
-	
+
 	// Collect argument list after origin.
 	var args = [], i;
-	
-    for(i = 1; i < arguments.length; i++) {
+
+	for(i = 1; i < arguments.length; i++) {
 		args.push(arguments[i]);
 	}
-	
+
 	// If origin is true, we should
 	// run from the start of the chain.
 	if (origin) {
@@ -122,7 +124,7 @@ proto.from = function(origin) {
 			this._chain.reverse();
 		}
 		this.next.apply(this, args);
-	
+
 	// Otherwise, run from the end.
 	} else {
 		// Shift everything in the chain
@@ -132,6 +134,6 @@ proto.from = function(origin) {
 		}
 		this.prev.apply(this, args);
 	}
-    
-    return this;
+
+	return this;
 };
