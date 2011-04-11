@@ -113,9 +113,9 @@ proto.from = function(origin) {
 		// Shift everything in the reverse chain
 		// back to the start of the forward chain.
 		while (this._revChain.length) {
-			chain.reverse();
-			chain.push(this._revChain.pop());
-			chain.reverse();
+			this._chain.reverse();
+			this._chain.push(this._revChain.pop());
+			this._chain.reverse();
 		}
 		this.next.apply(this, args);
 	
