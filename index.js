@@ -47,12 +47,14 @@ proto.add = proto.push = function(name, callback) {
     if (name) {
         this.fn[name] = callback;
     }
+    
+    return this;
 };
 
 // Execute previous item in chain.
 proto.prev = function() {
     if (!this._revChain.length) {
-        return;
+        return this;
     }
     
 	// Get new current function.
@@ -70,13 +72,14 @@ proto.prev = function() {
 	this._curr = fn;
 	
 	// Execute current function.
-	fn.apply(this, arguments);    
+	fn.apply(this, arguments);
+    return this;    
 };
 
 // Execute next item in chain.
 proto.next = proto.run = proto.start = function() {
     if (!this._chain.length) {
-        return;
+        return this;
     }    
     
 	// Get new current function.
@@ -93,6 +96,7 @@ proto.next = proto.run = proto.start = function() {
 	
 	// Execute current function.
 	fn.apply(this, arguments);
+    return this;
 };
 
 // Execute from origin point in chain.
@@ -128,4 +132,6 @@ proto.from = function(origin) {
 		}
 		this.prev.apply(this, args);
 	}
+    
+    return this;
 };
