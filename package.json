@@ -1,7 +1,7 @@
 {
   "name": "chainer",
   "description": "Super simple and lightweight function chain.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "stephenbelanger.com",
   "repository": {
     "type": "git",
