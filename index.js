@@ -1,1 +1,1 @@
-module.eports = require('./chainer');
+module.exports = require('./chainer');
