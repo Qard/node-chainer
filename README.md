@@ -1,4 +1,5 @@
 [![build status](https://secure.travis-ci.org/Qard/node-chainer.png)](http://travis-ci.org/Qard/node-chainer)
+
 	var chainer = require('chainer');
 	
 	// Make a new chain.
