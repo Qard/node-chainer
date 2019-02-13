@@ -1,6 +1,6 @@
 # chainer
 
-[![build status](https://secure.travis-ci.org/Qard/node-chainer.png)](http://travis-ci.org/Qard/node-chainer)
+[![build status](https://secure.travis-ci.org/Qard/node-chainer.png)](http://travis-ci.org/Qard/node-chainer) [![Greenkeeper badge](https://badges.greenkeeper.io/Qard/node-chainer.svg)](https://greenkeeper.io/)
 
 Build simple async execution chains.
 
